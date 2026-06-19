@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - Cafeteria</title>
+    <meta name="description" content="Cafeteria Aurora — cafés especiais, ambiente acolhedor e doces artesanais.">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/icone1.png">
+</head>
+<style>
+    body {
+        font-family: 'Nunito', sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    .category {
+        margin-bottom: 2rem;
+    }
+    .category h2 {
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    .item {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .item:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-4px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    .item1 {
+        background: white;
+        border-radius: 8px;
+        padding: 1rem;
+        cursor: pointer;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .item h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+    .item p {
+        margin: 0.5rem 0;
+        color: var(--muted);
+    }
+    .price {
+        font-weight: 700;
+        color: var(--accent);
+    }
+</style>
+<body>
+    <header aria-label="Cabeçalho do site">
+        <div class="container nav">
+            <a class="brand" href="1menu.html">
+                <div class="logo"><div class="logoimg"></div></div>
+                <div>
+                    <div style="font-weight:700;">Cafeteria Aurora</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Cafés especiais • Ambiente acolhedor</div>
+                </div>
+            </a>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="1menu.html"">Menu</a></li>
+                    <li><a href="2sobre.html">Sobre</a></li>
+                    <li><a href="3contato.html">Contato</a></li>
+                    <li><a class="cta" href="4cardapio.html">Cardápio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <!-- Cafés -->
+        <section class="category">
+            <h2>Cafés</h2>
+            <div class="items">
+                <div class="item">
+                    <a href="page/items_menu2.html" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrbZ30ACpLnGcvYX5uwXWPUR8sbf1paezFdA&s');"></div>
+                    <h3>Espresso</h3>
+                    <p>Café forte e encorpado</p>
+                    <span class="price">R$ 7,00</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="page/items_menu3.html" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://www.tasteofhome.com/wp-content/uploads/2017/09/exps37407_THE1213734_37407_WEB.jpg');"></div>
+                    <h3>Cappuccino</h3>
+                    <p>Espresso com leite e espuma</p>
+                    <span class="price">R$ 13,50</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480_1_5x/img/recipe/ras/Assets/314D11A6-4457-4C70-A1BE-A6C25F597C18/Derivates/B362DC69-6AAA-43E1-AF51-184463E8551B.jpg');"></div>
+                    <h3>Latte</h3>
+                    <p>Café cremoso com leite vaporizado</p>
+                    <span class="price">R$ 12,00</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://www.bakenroll.az/en/image/americano.jpg');"></div>
+                    <h3>Americano</h3>
+                    <p>Espresso diluído em água quente</p>
+                    <span class="price">R$ 6,00</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Bebidas Quentes -->
+        <section class="category">
+            <h2>Bebidas Quentes</h2>
+            <div class="items">
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://receitadaboa.com.br/wp-content/uploads/2024/08/chocolate-quente-cremoso.jpg');"></div>
+                    <h3>Chocolate Quente</h3>
+                    <p>Cremoso e quentinho</p>
+                    <span class="price">R$ 7,00</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://blog.cybercook.com.br/wp-content/uploads/2016/05/chas-gourmet.webp');"></div>
+                    <h3>Chá Gourmet</h3>
+                    <p>Camomila, gengibre ou menta</p>
+                    <span class="price">R$ 6,50</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Bebidas Frias -->
+        <section class="category">
+            <h2>Bebidas Frias</h2>
+            <div class="items">
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://tudodelicious.com/wp-content/uploads/2025/09/Cafe-Gelado.jpg');"></div>
+                    <h3>Café Gelado</h3>
+                    <p>Refrescante e delicioso</p>
+                    <span class="price">R$ 7,50</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://julianaburigo.com.br/blog/wp-content/uploads/2025/04/smoothies_receitas_ideais_para_recuperacao_pos_operatoria.jpg');"></div>
+                    <h3>Smoothie de Frutas</h3>
+                    <p>Morango, banana ou mixto</p>
+                    <span class="price">R$ 13,00</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Alimentos -->
+        <section class="category">
+            <h2>Alimentos</h2>
+            <div class="items">
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://panutti.com.br/resize/imagecache//d603105af9af1445f1ae97a3586e94f4.jpg');"></div>
+                    <h3>Croissant de Chocolate</h3>
+                    <p>Macio e recheado</p>
+                    <span class="price">R$ 6,00</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://recipesblob.oetker.com.br/assets/11ed1b54a18b427ea8e7f7d141f0a34d/1272x764/bolo_cenoura_horizontal.webp');"></div>
+                    <h3>Bolo de Cenoura</h3>
+                    <p>Com calda de chocolate</p>
+                    <span class="price">R$ 7,00</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://sabores-new.s3.amazonaws.com/public/2024/11/sanduiche-natural-de-frango.jpg');"></div>
+                    <h3>Sanduíche Natural</h3>
+                    <p>Frango, queijo e tomate</p>
+                    <span class="price">R$ 12,00</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" style="text-decoration:none; color:inherit;" class="item1">
+                    <div class="thumb" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUyQ4d4gBCA40F_F3rgprhbzpBW_FFyNpB2g&s');"></div>
+                    <h3>Quiche de Presunto</h3>
+                    <p>Receita tradicional</p>
+                    <span class="price">R$ 9,00</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="foo1">
+        <div class="container">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+                <div style="display:flex;gap:.75rem;align-items:center">
+                    <div class="logo" style="width:40px;height:40px;font-size:18px">A</div>
+                    <div style="text-align:left">
+                        <div style="font-weight:700">Cafeteria Aurora</div>
+                        <div class="small">Rua das Flores, 123 • Centro</div>
+                    </div>
+                </div>
+                <div class="small">© <span id="year"></span> Cafeteria Aurora — Todos os direitos reservados</div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

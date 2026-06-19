@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nova guia</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <style>
+            .ti { font-family: 'Tabler Icons', sans-serif; }
+            .ti ti-search::before { content: "\e900"; }
+            .ti ti-microphone::before { content: "\e901"; }
+            .ti ti-brand-youtube::before { content: "\e902"; }
+            .ti ti-mail::before { content: "\e903"; }
+            .ti ti-map-2::before { content: "\e904"; }
+            .ti ti-brand-google-drive::before { content: "\e905"; }
+            .ti ti-news::before { content: "\e906"; }
+            .nav { position:relative; }
+            #nt { background-image: url("images/windows-xp-3840x3840-17062.jpg");background-size: cover;background-repeat: no-repeat; background-position: center; background-attachment: fixed; min-height:625px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; font-family:'Roboto',Arial,sans-serif; }
+            #nt-logo { display:flex; gap:0; font-size:72px; font-weight:700; line-height:1; letter-spacing:-2px; }
+            #nt-bar { display:flex; align-items:center; gap:10px; background:#fff; border-radius:24px; border:1px solid #dfe1e5; padding:0 16px; height:46px; width:100%; max-width:560px; box-shadow:0 1px 6px rgba(32,33,36,.1); }
+            #nt-bar:focus-within { box-shadow:0 1px 12px rgba(32,33,36,.2); border-color:transparent; }
+            #nt-bar input { flex:1; border:none; outline:none; font-size:16px; background:transparent; color:#202124; font-family:inherit; }
+            #nt-bar input::placeholder { color:#9aa0a6; }
+            #nt-bar i { color:#9aa0a6; font-size:20px; }
+            #nt-shortcuts { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; max-width:560px; }
+            .nt-sc { display:flex; flex-direction:column; align-items:center; gap:6px; width:72px; padding:8px 4px; border-radius:8px; cursor:pointer; text-decoration:none; }
+            .nt-sc:hover { background:rgba(0,0,0,.06); }
+            .nt-sc-icon { width:48px; height:48px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.15); display:flex; align-items:center; justify-content:center; font-size:22px; }
+            .nt-sc span { font-size:12px; color:#3c4043; }
+            .nt-sc:hover .nt-sc-icon { box-shadow:0 4px 8px rgba(0,0,0,.2); }
+            .ti { font-family: 'Tabler Icons', sans-serif; }
+            .gb-Id { display:flex; gap:12px; }
+            .gb-od { display:flex; gap:12px; }
+            .gb-Id .gb-od .gb_Ad { display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.8); cursor:pointer; }
+            .gb-Id .gb-od .gb_Ad:hover { background:rgba(255,255,255,1); }
+            .gb-Id .gb-od .gb_Ad .gb_C { display:flex; align-items:center; justify-content:center; width:100%; height:100%; color:#202124; font-size:18px; }
+        </style>
+    </head>
+    <body>
+        <navbar class="nav">
+            <div style="display:flex; gap:16px; padding:8px 16px; position:absolute; top:0; left:0; right:0; z-index:1;">
+                <a href="#" style="color:#202124; font-size:14px; text-decoration:none;">Gmail</a>
+                <a href="#" style="color:#202124; font-size:14px; text-decoration:none;">Imagens</a>
+                <div style="flex:1"></div>
+                <a href="#" style="color:#202124; font-size:14px; text-decoration:none;"><i class="ti ti-apps"></i></a>
+            </div>
+            <div class="gb-Id">
+                <div class="gb-od">
+                    <div class="gb_K gb_Ad gb_6" data-ogsr-fb="true" data-ogsr-alt="" id="gbwa"><div class="gb_D"><a class="gb_C" aria-label="Google Apps" href="https://www.google.com.br/intl/pt-BR/about/products?tab=rh" aria-expanded="false" role="button" tabindex="0" target="_top"><svg class="gb_F" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"></path><image src="https://ssl.gstatic.com/gb/images/bar/al-icon.png" alt="" height="24" width="24" style="border:none;display:none \9"></image></svg></a></div></div>
+                        <div class="gb_D">
+                            <a class="gb_C" aria-label="Google Apps" href="https://www.google.com.br/intl/pt-BR/about/products?tab=rh" aria-expanded="false" role="button" tabindex="0" target="_top">
+                                <svg class="gb_F" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                    <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"></path>
+                                    <image src="https://ssl.gstatic.com/gb/images/bar/al-icon.png" alt="" height="24" width="24" style="border:none;display:none \9"></image>
+                                </svg>
+                            </a>
+                        </div>
+                </div>
+            </div>
+        </navbar>
+        <div id="nt">
+            <div id="nt-logo">
+                <span style="color:#4e4948">GOOGLE</span>
+            </div>
+
+            <div id="nt-bar">
+                <i class="ti ti-search" aria-hidden="true"></i>
+                <input id="q" type="text" placeholder="Pesquisar no Google ou digitar URL" aria-label="Pesquisa" />
+                <i class="ti ti-microphone" aria-hidden="true"></i>
+            </div>
+
+            <div id="nt-shortcuts">
+                <a class="nt-sc" href="https://youtube.com"><div class="nt-sc-icon" style="color:#FF0000"><i class="ti ti-brand-youtube"></i></div><span>YouTube</span></a>
+                <a class="nt-sc" href="https://gmail.com"><div class="nt-sc-icon" style="color:#EA4335"><i class="ti ti-mail"></i></div><span>Gmail</span></a>
+                <a class="nt-sc" href="https://maps.google.com"><div class="nt-sc-icon" style="color:#34A853"><i class="ti ti-map-2"></i></div><span>Maps</span></a>
+                <a class="nt-sc" href="https://drive.google.com"><div class="nt-sc-icon" style="color:#4285F4"><i class="ti ti-brand-google-drive"></i></div><span>Drive</span></a>
+                <a class="nt-sc" href="https://news.google.com"><div class="nt-sc-icon" style="color:#4285F4"><i class="ti ti-news"></i></div><span>Notícias</span></a>
+            </div>
+        </div>
+    </body>
+</html>

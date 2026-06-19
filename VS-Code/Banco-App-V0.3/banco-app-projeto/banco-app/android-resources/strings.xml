@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  android-resources/strings.xml
+  Strings customizadas para o app Android.
+  Copiar para: android/app/src/main/res/values/strings.xml após rodar "npx cap add android"
+-->
+<resources>
+    <string name="app_name">NovoBanco</string>
+    <string name="title_activity_main">NovoBanco</string>
+    <string name="package_name">br.edu.novobanco.app</string>
+    <string name="custom_url_scheme">br.edu.novobanco.app</string>
+</resources>

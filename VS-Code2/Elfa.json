@@ -1,0 +1,57 @@
+{
+  "tipo": "imagem_digital",
+  "estilo": [
+    "arte digital",
+    "fantasia",
+    "cyberpunk",
+    "semi-realista"
+  ],
+  "personagem": {
+    "genero_aparente": "feminino",
+    "especie": "elfa",
+    "idade_aparente": "adulta",
+    "cabelo": {
+      "cor": "castanho",
+      "comprimento": "longo",
+      "estilo": "ondulado"
+    },
+    "olhos": {
+      "cor": "azul"
+    },
+    "orelhas": "pontudas",
+    "expressao": "sedutora"
+  },
+  "roupa": {
+    "tipo": "body revelador metálico",
+    "cor_principal": "dourado",
+    "estilo": "futurista"
+  },
+  "pose": {
+    "descricao": "sentada de lado com uma das mãos atrás da cabeça",
+    "angulo": "3/4"
+  },
+  "cenario": {
+    "ambiente": "urbano noturno",
+    "iluminacao": "neon",
+    "elementos_visiveis": [
+      "luzes desfocadas",
+      "letreiro neon rosa",
+      "círculo neon azul"
+    ]
+  },
+  "paleta_de_cores": [
+    "azul neon",
+    "rosa neon",
+    "dourado",
+    "tons escuros"
+  ],
+  "composicao": {
+    "foco": "personagem centralizada",
+    "profundidade_de_campo": "fundo desfocado",
+    "contraste": "alto"
+  },
+  "conteudo_sensivel": {
+    "nudidade": "parcial",
+    "sexualizacao": "alta"
+  }
+}

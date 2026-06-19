@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contato</title>
+        <meta name="description" content="Cafeteria Aurora — cafés especiais, ambiente acolhedor e doces artesanais.">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/png" href="images/icone1.png">
+    </head>
+    <body>
+        <header aria-label="Cabeçalho do site">
+        <div class="container nav">
+            <a class="brand" href="1menu.html">
+                <div class="logo"><div class="logoimg"></div></div>
+                <div>
+                    <div style="font-weight:700;">Cafeteria Aurora</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Cafés especiais • Ambiente acolhedor</div>
+                </div>
+            </a>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="1menu.html">Menu</a></li>
+                    <li><a href="2sobre.html">Sobre</a></li>
+                    <li><a href="3contato.html">Contato</a></li>
+                    <li><a class="cta" href="4cardapio.html">Cardápio</a></li>
+                </ul>
+            </nav>
+        </div>
+        </header>
+        <main>
+        <section id="contato">
+            <h2>Contato & Reservas</h2>
+            <div class="card" style="display:grid;grid-template-columns:1fr 300px;gap:1rem;">
+                <div>
+                    <form id="contactForm" novalidate>
+                        <label class="small">Nome</label>
+                        <input type="text" id="nome" required placeholder="Seu nome" />
+                        <label class="small">Telefone ou WhatsApp</label>
+                        <input type="tel" id="telefone" placeholder="(XX) 9XXXX-XXXX" />
+                        <label class="small">Mensagem</label>
+                        <textarea id="mensagem" placeholder="Ex.: Reserva para 4 pessoas, às 19h"></textarea>
+                        <div style="display:flex;gap:.6rem;align-items:center;margin-top:.6rem">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <div id="formMsg" class="small" aria-live="polite"></div>
+                        </div>
+                    </form>
+                </div>
+                <div style="padding-left:.5rem">
+                    <h4>Telefone</h4>
+                    <div class="small">+55 (11) 91234-5678</div>
+                    <h4 style="margin-top:1rem">Rede social</h4>
+                    <div class="small">@cafeteriaaurora</div>
+                    <h4 style="margin-top:1rem">Observações</h4>
+                    <div class="small">Reservas confirmadas por telefone. Aceitamos pedidos para viagem.</div>
+                </div>
+            </div>
+        </section>
+        </main>
+        <footer class="foo1">
+            <div class="container">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+                    <div style="display:flex;gap:.75rem;align-items:center">
+                        <div class="logo" style="width:40px;height:40px;font-size:18px">A</div>
+                        <div style="text-align:left">
+                            <div style="font-weight:700">Cafeteria Aurora</div>
+                            <div class="small">Rua das Flores, 123 • Centro</div>
+                        </div>
+                    </div>
+                    <div class="small">© <span id="year"></span> Cafeteria Aurora — Todos os direitos reservados</div>
+                </div>
+            </div>
+        </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.getElementById('contactForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const nome = document.getElementById('nome').value.trim();
+            const msgEl = document.getElementById('formMsg');
+            if(!nome){
+                msgEl.textContent = 'Por favor, informe seu nome.';
+                msgEl.style.color = '#b03a2e';
+                return;
+            }
+            msgEl.textContent = 'Mensagem enviada. Responderemos em breve!';
+            msgEl.style.color = '#2b7a3e';
+            this.reset();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+            a.addEventListener('click', function(e){
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target){
+                    e.preventDefault();
+                    target.scrollIntoView({behavior:'smooth',block:'start'});
+                }
+            });
+        });
+    </script>  
+    </body> 
+</html>

@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "tipo_arquivo": "imagem_png",
+    "tipo_conteudo": "arte digital",
+    "estilo_artistico": [
+      "semi-realista",
+      "renderização 3D",
+      "anime ocidentalizado",
+      "glamour",
+      "retrato estilizado"
+    ],
+    "qualidade_visual": "alta definição",
+    "proporcao": "vertical"
+  },
+  "personagem_principal": {
+    "quantidade": 1,
+    "genero_aparente": "feminino",
+    "idade_aparente": {
+      "estimativa": "adulta jovem",
+      "faixa": "20-30 anos"
+    },
+    "fisico": {
+      "estrutura_corporal": "esguia e curvilínea",
+      "cintura": "fina",
+      "quadris": "moderadamente largos",
+      "busto": "volumoso",
+      "postura": "reta e elegante"
+    },
+    "pele": {
+      "tom": "claro",
+      "aparencia": "suave e sem imperfeições aparentes",
+      "acabamento": "iluminado digitalmente"
+    },
+    "rosto": {
+      "formato": "oval",
+      "expressao": {
+        "tipo": "sorriso suave",
+        "emocao_transmitida": [
+          "confiança",
+          "simpatia",
+          "sedução sutil"
+        ]
+      },
+      "olhos": {
+        "cor": "azul claro",
+        "formato": "amendoados",
+        "detalhes": [
+          "cílios destacados",
+          "brilho intenso",
+          "olhar direto para a câmera"
+        ]
+      },
+      "sobrancelhas": {
+        "formato": "arqueadas",
+        "cor": "castanho claro"
+      },
+      "nariz": {
+        "tipo": "pequeno e fino"
+      },
+      "labios": {
+        "cor": "rosa suave",
+        "acabamento": "brilho discreto"
+      }
+    },
+    "cabelo": {
+      "comprimento": "longo",
+      "textura": "ondulado",
+      "volume": "alto",
+      "cores": [
+        "lilás",
+        "azul turquesa"
+      ],
+      "estilo": "solto sobre os ombros",
+      "acabamento": "brilhante e estilizado digitalmente"
+    },
+    "acessorios": {
+      "oculos": {
+        "tipo": "armação metálica fina",
+        "formato": "redondo"
+      },
+      "colar": {
+        "tipo": "corrente dourada delicada",
+        "pingente": "pequeno medalhão circular"
+      }
+    }
+  },
+  "vestimenta": {
+    "camisa": {
+      "tipo": "camisa social feminina",
+      "cor": "branco acetinado",
+      "material_aparente": "cetim/seda",
+      "mangas": "longas",
+      "gola": "tradicional aberta",
+      "ajuste": "justo ao corpo",
+      "decote": {
+        "profundidade": "moderada",
+        "estilo": "botões parcialmente abertos"
+      },
+      "efeitos_visuais": [
+        "reflexos suaves",
+        "dobras realçadas pela iluminação"
+      ]
+    },
+    "saia": {
+      "tipo": "saia lápis",
+      "cor": "preta",
+      "comprimento": "até abaixo da cintura visível",
+      "ajuste": "muito justa",
+      "estilo": "formal"
+    }
+  },
+  "pose_e_composicao": {
+    "pose": {
+      "descricao": "em pé, levemente inclinada para um lado",
+      "bracos": "relaxados ao lado do corpo",
+      "cabeca": "ligeiramente inclinada"
+    },
+    "enquadramento": {
+      "tipo": "plano médio",
+      "angulo_camera": "frontal",
+      "centralizacao": "personagem centralizada"
+    },
+    "foco_visual": [
+      "rosto",
+      "cabelo colorido",
+      "decote",
+      "roupa elegante"
+    ],
+    "profundidade_de_campo": {
+      "tipo": "rasa",
+      "efeito": "fundo desfocado"
+    }
+  },
+  "cenario": {
+    "ambiente": {
+      "tipo": "interior sofisticado",
+      "aparencia": "salão elegante ou escritório luxuoso"
+    },
+    "elementos_visiveis": [
+      "painéis de madeira",
+      "luzes quentes desfocadas",
+      "mesas ao fundo",
+      "decoração escura"
+    ],
+    "estilo_ambiente": [
+      "clássico",
+      "aconchegante",
+      "sofisticado"
+    ]
+  },
+  "iluminacao": {
+    "tipo": "cinematográfica",
+    "temperatura_cor": "quente",
+    "fontes_aparentes": [
+      "luzes internas suaves",
+      "luminárias desfocadas"
+    ],
+    "efeitos": [
+      "brilho nos cabelos",
+      "reflexo acetinado na camisa",
+      "sombras suaves"
+    ]
+  },
+  "paleta_de_cores": {
+    "predominantes": [
+      "lilás",
+      "azul turquesa",
+      "branco",
+      "preto",
+      "marrom quente"
+    ],
+    "contraste": "alto entre personagem e fundo"
+  },
+  "qualidade_e_renderizacao": {
+    "nitidez": "alta",
+    "detalhamento": "elevado",
+    "acabamento": [
+      "pele suavizada",
+      "texturas refinadas",
+      "efeitos de luz realçados"
+    ],
+    "indicativos_digitais": [
+      "proporções idealizadas",
+      "iluminação artificialmente balanceada",
+      "ausência de imperfeições naturais"
+    ]
+  },
+  "interpretacao_visual": {
+    "tema": [
+      "elegância",
+      "charme",
+      "beleza estilizada"
+    ],
+    "vibe": [
+      "sofisticada",
+      "acolhedora",
+      "sedutora de forma leve"
+    ],
+    "inspiracoes_aparentes": [
+      "personagem de jogo",
+      "influenciadora digital estilizada",
+      "arte promocional"
+    ]
+  },
+  "conteudo_sensivel": {
+    "nudidade": false,
+    "sexualizacao": "moderada",
+    "conteudo_explicito": false
+  }
+}

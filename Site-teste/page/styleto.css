@@ -1,0 +1,33 @@
+:root {
+    --card-bg: #ffffff;
+    --card-radius: 12px;
+    --card-shadow: 0 6px 20px rgba(18, 18, 20, .08);
+    --primary-btn: #6b4eff;
+}
+.card {width: 100%;max-width: 820px;background: var(--card-bg);border-radius: var(--card-radius);box-shadow: var(--card-shadow);margin: 60px auto;overflow: hidden;display: grid;grid-template-columns: 360px 1fr;grid-template-rows: 1fr;gap: 0;position: relative;z-index: 10;}
+.photo {background: linear-gradient(180deg, #f6eefc 0%, #fff 100%);padding: 20px;display: flex;align-items: center;justify-content: center;}
+.photo img {width: 100%;height: auto;border-radius: 10px;object-fit: cover;box-shadow: 0 8px 24px rgba(107, 78, 255, .12);}
+.meta {padding: 26px 28px;display: flex;flex-direction: column;gap: 14px;text-align: left;}
+.title {display: flex;align-items: center;gap: 12px;}
+.title h1 {margin: 0;font-size: 20px;font-family: 'Nunito', sans-serif; /* Consistência de fonte */color: #111;}
+.badge {background: var(--primary-btn);color: #fff;padding: 6px 8px;border-radius: 8px;font-size: 12px;}
+.desc {color: #6b7280;font-size: 14px;line-height: 1.45;}
+.tags {display: flex;gap: 8px;flex-wrap: wrap;}
+.tag {background: #f3f4f6;color: #374151;font-size: 13px;padding: 6px 10px;border-radius: 999px;}
+.price-row {display: flex;align-items: center;justify-content: space-between;gap: 16px;margin-top: auto;}
+.price {font-weight: 700;font-size: 22px;color: #111;}
+.options {display: flex;gap: 8px;align-items: center;}
+.select-size {display: inline-flex;gap: 6px;background: #f8fafc;padding: 6px;border-radius: 8px;}
+.size-btn {background: transparent;border: 0;padding: 8px 10px;border-radius: 6px;cursor: pointer;font-weight: 600;}
+.size-btn.active {background: var(--primary-btn);color: #fff;}
+.actions {display: flex;gap: 10px;}
+.btn-card {border: 0;padding: 10px 14px;border-radius: 10px;cursor: pointer;font-weight: 600;}
+.btn-card.primary {background: var(--primary-btn);color: #fff;}
+.btn-card.ghost {background: #f3f4f6;color: #111827;}
+.info {font-size: 13px;color: #6b7280;display: flex;gap: 12px;align-items: center;}
+.allergens {font-size: 13px;color: #b91c1c;background: #fff1f2;padding: 6px 8px;border-radius: 8px;}
+@media (max-width: 760px) {
+    .card {grid-template-columns: 1fr;max-width: 520px;margin-top: 20px;}
+    .photo {padding: 14px;}
+    .meta {padding: 20px;}
+}

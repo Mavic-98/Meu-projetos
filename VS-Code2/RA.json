@@ -1,0 +1,65 @@
+{
+  "tipo": "fotografia",
+  "estilo": [
+    "retrato",
+    "glamour",
+    "sensual"
+  ],
+  "personagem": {
+    "genero_aparente": "feminino",
+    "idade_aparente": "adulta",
+    "cabelo": {
+      "cor": "castanho escuro",
+      "estilo": "coque duplo com fita rosa"
+    },
+    "acessorios": [
+      "óculos de armação preta",
+      "brincos pequenos"
+    ],
+    "expressao": "olhando para trás com expressão confiante"
+  },
+  "roupa": {
+    "top": {
+      "tipo": "cropped sem mangas",
+      "cor": "rosa claro"
+    },
+    "parte_inferior": {
+      "tipo": "calcinha fio-dental",
+      "cor": "rosa claro"
+    }
+  },
+  "pose": {
+    "descricao": "sentada em um banco, costas voltadas para a câmera, olhando sobre o ombro"
+  },
+  "cenario": {
+    "ambiente": "cozinha moderna",
+    "elementos_visiveis": [
+      "bancada",
+      "garrafas decorativas",
+      "pia",
+      "janela ampla",
+      "banco preto"
+    ],
+    "iluminacao": "natural e interna suave"
+  },
+  "composicao": {
+    "angulo": "traseiro",
+    "enquadramento": "vertical",
+    "foco": "personagem centralizada",
+    "profundidade_de_campo": "moderada"
+  },
+  "caracteristicas_visuais": {
+    "proporcoes_corporais": "exageradas e estilizadas",
+    "edicao": "aparência possivelmente alterada digitalmente"
+  },
+  "paleta_de_cores": [
+    "rosa claro",
+    "preto",
+    "branco",
+    "tons de pele"
+  ],
+  "conteudo_sensivel": {
+    "nudidade": "parcial",
+    "sexualizacao": "alta"
+  }
+}

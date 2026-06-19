@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Café Mocha Especial — Apresentação do Item</title>
+    <meta name="description" content="Detalhes do Café Mocha Especial na Cafeteria Aurora — sabor, ingredientes e opções de personalização." />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styleto.css" />
+    <link rel="icon" type="image/png" href="../images/icone1.png" />
+</head>
+<body>
+    <header aria-label="Cabeçalho do site">
+        <div class="container nav">
+            <a class="brand" href="1menu.html">
+                <div class="logo"><div class="logoimg"></div></div>
+                <div>
+                    <div style="font-weight:700;">Cafeteria Aurora</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Cafés especiais • Ambiente acolhedor</div>
+                </div>
+            </a>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="1menu.html"">Menu</a></li>
+                    <li><a href="2sobre.html">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a class="cta" href="#visitar">Visitar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <article class="card" aria-labelledby="item-title" role="region">
+        <div class="photo" aria-hidden="false">
+            <img src="https://via.placeholder.com/640x480.png?text=Caf%C3%A9+Mocha" alt="Xícara de Café Mocha com espuma e cacau polvilhado">
+        </div>
+
+        <div class="meta">
+            <div class="title">
+                <h1 id="item-title">Café Mocha Especial</h1>
+                <div class="badge" aria-hidden="true">Bestseller</div>
+            </div>
+
+            <p class="desc">
+                Espresso encorpado, chocolate meio amargo derretido e leite vaporizado, finalizado com espuma cremosa
+                e uma leve pitada de cacau. Uma combinação perfeita de café e chocolate para começar bem o dia.
+            </p>
+
+            <div class="tags" aria-hidden="true">
+                <span class="tag">Quente</span>
+                <span class="tag">Com leite</span>
+                <span class="tag">Contém lactose</span>
+            </div>
+
+            <div class="info" aria-hidden="true">
+                <span>Preparação: 3–5 min</span>
+                <span>•</span>
+                <span>Calorias: ~210 kcal (Média)</span>
+            </div>
+
+            <div style="height:8px"></div>
+
+            <div class="price-row">
+                <div style="display:flex; flex-direction:column;">
+                    <div class="price" id="price">R$ 12,90</div>
+                    <div class="info" style="margin-top:6px">
+                        <div class="allergens">Alérgenos: Leite</div>
+                    </div>
+                </div>
+
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px">
+                    <div class="options" role="radiogroup" aria-label="Tamanhos">
+                        <div class="select-size" role="group" aria-label="Tamanhos">
+                            <button class="size-btn active" data-size="M" data-mult="1" aria-checked="true" role="radio">M</button>
+                            <button class="size-btn" data-size="P" data-mult="0.9" aria-checked="false" role="radio">P</button>
+                            <button class="size-btn" data-size="G" data-mult="1.35" aria-checked="false" role="radio">G</button>
+                        </div>
+                        <div style="display:flex; gap:6px; align-items:center">
+                            <button id="minus" class="btn ghost" aria-label="Diminuir quantidade">-</button>
+                            <div id="qty" aria-live="polite" style="min-width:26px; text-align:center">1</div>
+                            <button id="plus" class="btn ghost" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn primary" id="addBtn" aria-label="Adicionar ao pedido">Adicionar ao pedido</button>
+                        <button class="btn ghost" id="favBtn" aria-pressed="false" aria-label="Adicionar aos favoritos">♡ Favorito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <script>
+        // Comportamento simples: ajuste de preço por tamanho e quantidade
+        (function(){
+            const base = 12.90;
+            const priceEl = document.getElementById('price');
+            const sizeBtns = Array.from(document.querySelectorAll('.size-btn'));
+            const minus = document.getElementById('minus');
+            const plus = document.getElementById('plus');
+            const qtyEl = document.getElementById('qty');
+            let qty = 1;
+            let multiplier = 1;
+
+            function formatBRL(v){ return 'R$ ' + v.toFixed(2).replace('.', ','); }
+
+            function updatePrice(){
+                const total = base * multiplier * qty;
+                priceEl.textContent = formatBRL(total);
+            }
+
+            sizeBtns.forEach(btn=>{
+                btn.addEventListener('click', ()=>{
+                    sizeBtns.forEach(b=>{
+                        b.classList.remove('active');
+                        b.setAttribute('aria-checked','false');
+                    });
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-checked','true');
+                    multiplier = parseFloat(btn.dataset.mult);
+                    updatePrice();
+                });
+            });
+
+            plus.addEventListener('click', ()=>{
+                qty = Math.min(12, qty + 1);
+                qtyEl.textContent = qty;
+                updatePrice();
+            });
+            minus.addEventListener('click', ()=>{
+                qty = Math.max(1, qty - 1);
+                qtyEl.textContent = qty;
+                updatePrice();
+            });
+
+            document.getElementById('addBtn').addEventListener('click', ()=>{
+                const size = document.querySelector('.size-btn.active').dataset.size;
+                alert(`Adicionado ao pedido: Café Mocha Especial — Tamanho ${size} ×${qty}`);
+            });
+
+            document.getElementById('favBtn').addEventListener('click', function(){
+                const pressed = this.getAttribute('aria-pressed') === 'true';
+                this.setAttribute('aria-pressed', String(!pressed));
+                this.textContent = pressed ? '♡ Favorito' : '♥ Favorito';
+            });
+
+            // inicial
+            updatePrice();
+        })();
+    </script>
+</body>
+</html></div>

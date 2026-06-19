@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #fdf0ef; --logo-color: #8b3b2e; --text: #5f6368; --text-light: #b1b5b8; --text-dark: #1f1f1f; --text-muted: #444; --search-border: #ddd; --search-bg: #fff; --shortcut-bg: #f5e8e7; --shortcut-hover: #eedede; --btn-ai-bg: #fff; --btn-ai-border: #c8a8a4; --link-color: #222; --link-hover: #5f6368; --link-color-light: #b1b5b8; --link-color-active: #1a73e8; --bottom-btn-bg: #fde8e6; --bottom-btn-border: #e0b0ac; }
+    body { font-family: 'Roboto', sans-serif; background-image: url("images/1357336.png"); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; min-height: 100vh; display: flex; flex-direction: column; color: var(--text-dark); }
+
+    /* ── TOP BAR ── */
+    header { display: flex; justify-content: flex-end; align-items: center; padding: 14px 20px; gap: 16px; }
+    header a { font-size: 13.5px; color: var(--link-color-light); text-decoration: none; font-weight: 400; transition: color .15s; }
+    header a:hover { color: var(--link-hover); text-decoration: underline; }
+    .grid-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; cursor: pointer; transition: background .15s; }
+    .grid-icon:hover { background: rgba(0,0,0,.06); }
+    .grid-icon svg { width: 20px; height: 20px; fill: #555; }
+    .avatar { width: 32px; height: 32px; background: #1a627f; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'Roboto', sans-serif; transition: background .15s; }
+
+    /* ── MAIN ── */
+    main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 80px; }
+
+    /* Logo */
+    .google-logo { font-family: 'Product Sans', 'Roboto', sans-serif; font-size: 88px; font-weight: 700; color: var(--logo-color); letter-spacing: -2px; line-height: 1; margin-bottom: 30px; user-select: none; }
+
+    /* Search bar */
+    .search-wrap { width: 100%; max-width: 582px; position: relative; }
+    .search-bar { display: flex; align-items: center; background: var(--search-bg); border: 1.5px solid var(--search-border); border-radius: 28px; padding: 0 16px 0 20px; height: 50px; gap: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08); transition: box-shadow .2s, border-color .2s; }
+    .search-bar:focus-within { box-shadow: 0 3px 12px rgba(0,0,0,.14); border-color: transparent; }
+    .search-icon { flex-shrink: 0; }
+    .search-icon svg { width: 20px; height: 20px; fill: #8a8a8a; display: block; }
+    .search-input { flex: 1; border: none; outline: none; font-size: 16px; color: var(--text-dark); background: transparent; font-family: 'Roboto', sans-serif; }
+    .search-input::placeholder { color: #8a8a8a; }
+    .search-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .icon-btn { width: 36px; height: 36px; border: none; background: none; border-radius: 50%; cursor: pointer; display: grid; place-items: center; transition: background .15s; }
+    .icon-btn:hover { background: rgba(0,0,0,.06); }
+    .icon-btn svg { width: 22px; height: 22px; display: block; }
+
+    /* Modo IA pill */
+    .modo-ia { display: flex; align-items: center; gap: 6px; border: 1.5px solid var(--btn-ai-border); border-radius: 20px; padding: 5px 12px; font-size: 13.5px; font-weight: 500; color: var(--text-dark); background: var(--btn-ai-bg); cursor: pointer; white-space: nowrap; transition: background .15s; font-family: 'Roboto', sans-serif; }
+    .modo-ia:hover { background: #f9eded; }
+    .modo-ia-icon { font-size: 16px; }
+
+    /* ── SHORTCUTS ── */
+    .shortcuts { display: flex; align-items: center; gap: 20px; margin-top: 28px; }
+    .shortcut { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; width: 72px; }
+    .shortcut-icon { width: 56px; height: 56px; background: var(--shortcut-bg); border-radius: 50%; display: grid; place-items: center; transition: background .15s; }
+    .shortcut:hover .shortcut-icon { background: var(--shortcut-hover); }
+    .shortcut-label { font-size: 12px; color: var(--text-muted); text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; }
+
+    /* Add shortcut circle */
+    .add-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid #b09898; display: grid; place-items: center; color: #888; font-size: 20px; line-height: 1; }
+
+    /* ── BOTTOM BAR ── */
+    footer { position: fixed; bottom: 0; left: 0; right: 0; display: flex; justify-content: flex-end; align-items: center; padding: 14px 20px; }
+
+    .personalizar-btn { display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--bottom-btn-border); border-radius: 20px; padding: 8px 16px; font-size: 13.5px; font-weight: 500; color: var(--text-dark); background: var(--bottom-btn-bg); cursor: pointer; font-family: 'Roboto', sans-serif; transition: background .15s, box-shadow .15s; }
+    .personalizar-btn:hover { background: #f5d8d5; box-shadow: 0 1px 6px rgba(0,0,0,.1); }
+
+    /* ── SVGs inline ── */
+    .chrome-logo { width: 28px; height: 28px; }
+    .chatgpt-logo { width: 26px; height: 26px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="https://mail.google.com/mail/u/0/?ogbl#inbox">Gmail</a>
+    <a href="https://images.google.com">Imagens</a>
+
+    <!-- Grid icon -->
+    <div class="grid-icon" title="Apps Google">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM6 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM6 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+      </svg>
+    </div>
+
+    <!-- Avatar -->
+    <div class="avatar">M</div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="google-logo" onclick="window.location.href='https://www.google.com'">Google</div>
+
+    <!-- Search Bar -->
+    <div class="search-wrap">
+      <form class="search-bar" action="https://www.google.com/search" method="GET" target="_blank">
+        <!-- Search icon -->
+        <button class="icon-btn search-icon" type="submit" title="Pesquisar">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.53 20.47l-3.66-3.66A7.5 7.5 0 1 0 3 10.5a7.5 7.5 0 0 0 11.87 6.13l3.66 3.66a.75.75 0 0 0 1.06-1.06zM4.5 10.5a6 6 0 1 1 12 0 6 6 0 0 1-12 0z"/>
+          </svg>
+        </button>
+
+        <input class="search-input" name="q" type="search" placeholder="Pesquise no Google ou digite um URL" autocomplete="off" />
+
+        <div class="search-actions">
+          <!-- Mic -->
+          <button class="icon-btn" type="button" title="Pesquisa por voz">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 1a4 4 0 0 0-4 4v7a4 4 0 0 0 8 0V5a4 4 0 0 0-4-4z" fill="#888"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V22H8v2h8v-2h-3v-1.06A9 9 0 0 0 21 12v-2h-2z" fill="#888"/>
+            </svg>
+          </button>
+
+          <!-- Camera -->
+          <button class="icon-btn" type="button" title="Pesquisa por imagem">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.828 4l-1.414-1.414A1 1 0 0 0 7.707 2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-4.293a1 1 0 0 1-.707-.293L13.586 2.5A2 2 0 0 0 12.172 2H9.828z" fill="none" stroke="#888" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="3.5" stroke="#888" stroke-width="1.8" fill="none"/>
+            </svg>
+          </button>
+
+          <!-- Modo IA -->
+          <button class="modo-ia" type="button">
+            <span class="modo-ia-icon">✦</span>
+            Modo IA
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Shortcuts -->
+    <div class="shortcuts">
+      <!-- YouTube -->
+      <div class="shortcut" onclick="window.location.href='https://www.youtube.com'">
+        <div class="shortcut-icon">
+          <!-- YouTube logo approximation -->
+            <svg class="youtube-icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 520 520" xml:space="preserve">
+                <circle style="fill:#D22215;" cx="256" cy="256" r="256"/>
+                <path style="fill:#A81411;" d="M384.857,170.339c-7.677,2.343-15.682,4.356-23.699,6.361c-56.889,12.067-132.741-20.687-165.495,32.754c-27.317,42.494-35.942,95.668-67.017,133.663L294.629,509.1c110.47-16.72,197.773-104.036,214.476-214.511L384.857,170.339z"/>
+                <path style="fill:#FFFFFF;" d="M341.649,152.333H170.351c-33.608,0-60.852,27.245-60.852,60.852v85.632c0,33.608,27.245,60.852,60.852,60.852h171.298c33.608,0,60.852-27.245,60.852-60.852v-85.632C402.501,179.578,375.256,152.333,341.649,152.333L341.649,152.333z M300.494,260.167l-80.12,38.212c-2.136,1.019-4.603-0.536-4.603-2.901v-78.814c0-2.4,2.532-3.955,4.67-2.87l80.12,40.601C302.947,255.602,302.904,259.019,300.494,260.167L300.494,260.167z"/>
+                <path style="fill:#D1D1D1;" d="M341.649,152.333h-87.373v78.605l46.287,23.455c2.384,1.208,2.384,4.348,0,5.556l-46.287,23.455v78.605h87.373c33.608,0,60.852-27.245,60.852-60.852v-85.632C402.501,179.578,375.256,152.333,341.649,152.333z"/>
+            </svg>
+        </div>
+        <span class="shortcut-label">YouTube</span>
+      </div>
+
+      <!-- Chrome Web Store -->
+      <div class="shortcut" onclick="window.location.href='https://chrome.google.com/webstore'">
+        <div class="shortcut-icon">
+          <svg class="chrome-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="11" fill="#4285F4"/>
+            <circle cx="20" cy="20" r="7" fill="white"/>
+            <circle cx="20" cy="20" r="4" fill="#4285F4"/>
+            <path d="M20 9 L35 35 L5 35 Z" fill="none" stroke="white" stroke-width="0"/>
+            <!-- Chrome petals -->
+            <path d="M20 9 A11 11 0 0 1 30.526 14.5 L20 20 Z" fill="#EA4335"/>
+            <path d="M30.526 14.5 A11 11 0 0 1 30.526 25.5 L20 20 Z" fill="#FBBC05"/>
+            <path d="M30.526 25.5 A11 11 0 0 1 9.474 25.5 L20 20 Z" fill="#34A853"/>
+            <path d="M9.474 25.5 A11 11 0 0 1 9.474 14.5 L20 20 Z" fill="#4285F4"/>
+            <path d="M9.474 14.5 A11 11 0 0 1 20 9 L20 20 Z" fill="#EA4335"/>
+            <circle cx="20" cy="20" r="5.5" fill="white"/>
+            <circle cx="20" cy="20" r="3.5" fill="#4285F4"/>
+          </svg>
+        </div>
+        <span class="shortcut-label">Chrome Web St...</span>
+      </div>
+
+      <!-- Web Store -->
+      <div class="shortcut" onclick="window.location.href='https://chrome.google.com/webstore'">
+        <div class="shortcut-icon">
+          <svg class="chrome-logo" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 9 A11 11 0 0 1 30.526 14.5 L20 20 Z" fill="#EA4335"/>
+            <path d="M30.526 14.5 A11 11 0 0 1 30.526 25.5 L20 20 Z" fill="#FBBC05"/>
+            <path d="M30.526 25.5 A11 11 0 0 1 9.474 25.5 L20 20 Z" fill="#34A853"/>
+            <path d="M9.474 25.5 A11 11 0 0 1 9.474 14.5 L20 20 Z" fill="#4285F4"/>
+            <path d="M9.474 14.5 A11 11 0 0 1 20 9 L20 20 Z" fill="#EA4335"/>
+            <circle cx="20" cy="20" r="5.5" fill="white"/>
+            <circle cx="20" cy="20" r="3.5" fill="#4285F4"/>
+          </svg>
+        </div>
+        <span class="shortcut-label">Web Store</span>
+      </div>
+
+      <!-- Criar atalho -->
+      <div class="shortcut" onclick="window.location.href='https://chrome.google.com/webstore'">
+        <div class="shortcut-icon">
+          <div class="add-icon">+</div>
+        </div>
+        <span class="shortcut-label">Criar atalho</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <button class="personalizar-btn">
+      ✏️ Personalizar o Chrome
+    </button>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sobre nós</title>
+        <meta name="description" content="Cafeteria Aurora — cafés especiais, ambiente acolhedor e doces artesanais.">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/png" href="images/icone1.png">
+    </head>
+    <body>
+        <header aria-label="Cabeçalho do site">
+        <div class="container nav">
+            <a class="brand" href="1menu.html">
+                <div class="logo"><div class="logoimg"></div></div>
+                <div>
+                    <div style="font-weight:700;">Cafeteria Aurora</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Cafés especiais • Ambiente acolhedor</div>
+                </div>
+            </a>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="1menu.html">Menu</a></li>
+                    <li><a href="2sobre.html">Sobre</a></li>
+                    <li><a href="3contato.html">Contato</a></li>
+                    <li><a class="cta" href="4cardapio.html">Cardápio</a></li>
+                </ul>
+            </nav>
+        </div>
+        </header>
+        <main>
+        <section id="sobre" class="two-col">
+            <div class="card about">
+                <h3>Sobre a Cafeteria Aurora</h3>
+                <p>
+                    Nascemos do amor ao café e à convivência. Selecionamos pequenos produtores e trabalhamos com torra própria para garantir sabor consistente. Nosso espaço foi projetado para ser acolhedor: perfeito para trabalhar, ler ou encontrar amigos.
+                </p>
+                <h4 style="margin-top:1rem">Nossos diferenciais</h4>
+                <ul style="color:var(--muted);">
+                    <li>Grãos de origem única</li>
+                    <li>Receitas artesanais e sazonais</li>
+                    <li>Ambiente confortável e wifi</li>
+                </ul>
+            </div>
+            <aside class="card">
+                <div class="hours">
+                    <div style="font-weight:700">Horário</div>
+                    <div style="margin-top:.4rem">Seg — Sex: 08:00 — 20:00<br>Sab: 09:00 — 18:00<br>Dom: 09:00 — 15:00</div>
+                </div>
+
+                <div style="margin-top:1rem">
+                    <h4 style="margin:.6rem 0 0">Endereço</h4>
+                    <div class="small">Rua das Flores, 123 — Centro</div>
+                    <div style="margin-top:.6rem"><a href="#contato" class="btn btn-outline" style="display:inline-block">Entrar em contato</a></div>
+                </div>
+            </aside>
+        </section>
+        </main>
+        <footer class="foo1">
+            <div class="container">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+                    <div style="display:flex;gap:.75rem;align-items:center">
+                        <div class="logo" style="width:40px;height:40px;font-size:18px">A</div>
+                        <div style="text-align:left">
+                            <div style="font-weight:700">Cafeteria Aurora</div>
+                            <div class="small">Rua das Flores, 123 • Centro</div>
+                        </div>
+                    </div>
+                    <div class="small">© <span id="year"></span> Cafeteria Aurora — Todos os direitos reservados</div>
+                </div>
+            </div>
+        </footer>
+        <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    </body>
+</html>

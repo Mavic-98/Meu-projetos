@@ -1,0 +1,146 @@
+{
+  "image": {
+    "type": "digital_illustration",
+    "style": [
+      "semi-realistic",
+      "anime-inspired",
+      "high-detail portrait art",
+      "soft cinematic lighting"
+    ],
+    "orientation": "portrait",
+    "aspect_ratio": "9:16",
+    "resolution_estimate": {
+      "width": 832,
+      "height": 1472
+    }
+  },
+  "subject": {
+    "category": "female character",
+    "estimated_age_range": "young adult",
+    "pose": {
+      "body_position": "standing",
+      "facing": "front-facing",
+      "head_tilt": "slightly tilted",
+      "expression": "gentle confident smile"
+    },
+    "appearance": {
+      "skin_tone": "fair",
+      "face_shape": "oval",
+      "eyes": {
+        "color": "blue",
+        "shape": "almond",
+        "expression": "friendly and calm"
+      },
+      "eyebrows": {
+        "color": "dark brown",
+        "shape": "well-defined"
+      },
+      "nose": "small and refined",
+      "lips": {
+        "color": "soft pink",
+        "expression": "slight smile"
+      },
+      "hair": {
+        "length": "long",
+        "texture": "wavy",
+        "primary_color": "pastel lavender",
+        "secondary_color": "cyan/turquoise gradient at the ends",
+        "parting": "side-parted",
+        "shine": "soft glossy highlights"
+      }
+    }
+  },
+  "clothing": {
+    "top": {
+      "type": "button-up blouse",
+      "color": "white",
+      "material_appearance": "silky/satin",
+      "fit": "form-fitting",
+      "details": [
+        "long sleeves",
+        "open collar",
+        "slight fabric reflections",
+        "button details visible"
+      ]
+    },
+    "bottom": {
+      "type": "high-waisted pencil skirt",
+      "color": "black",
+      "fit": "tight-fitting",
+      "length": "below visible frame"
+    },
+    "accessories": {
+      "glasses": {
+        "type": "round eyeglasses",
+        "frame_color": "gold"
+      },
+      "necklace": {
+        "type": "thin gold chain",
+        "pendant": "small circular charm"
+      }
+    }
+  },
+  "body_features": {
+    "build": "slim with curvy proportions",
+    "shoulders": "narrow",
+    "waist": "defined",
+    "posture": "upright and relaxed"
+  },
+  "environment": {
+    "setting": "indoor office or elegant lounge",
+    "background": {
+      "focus": "blurred/bokeh",
+      "elements": [
+        "wood-paneled walls",
+        "warm ambient lights",
+        "furniture silhouettes",
+        "soft decorative lighting"
+      ]
+    },
+    "lighting": {
+      "type": "warm cinematic lighting",
+      "source": [
+        "ambient lamps",
+        "soft frontal illumination"
+      ],
+      "effect": [
+        "gentle highlights on hair",
+        "soft shadows",
+        "warm atmosphere"
+      ]
+    }
+  },
+  "composition": {
+    "camera_angle": "eye level",
+    "framing": "mid-length portrait",
+    "depth_of_field": "shallow",
+    "focus": "sharp focus on subject",
+    "background_blur": true
+  },
+  "color_palette": {
+    "dominant_colors": [
+      "lavender",
+      "white",
+      "black",
+      "warm amber",
+      "cyan"
+    ],
+    "mood": [
+      "elegant",
+      "professional",
+      "stylized",
+      "welcoming"
+    ]
+  },
+  "artistic_details": {
+    "render_quality": "high",
+    "skin_rendering": "smooth stylized shading",
+    "hair_rendering": "detailed individual strands",
+    "lighting_style": "soft glow with cinematic contrast",
+    "visual_aesthetic": [
+      "modern fantasy aesthetic",
+      "stylized character portrait",
+      "digital art render"
+    ]
+  }
+}

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cafeteria Aurora</title>
+    <meta name="description" content="Cafeteria Aurora — cafés especiais, ambiente acolhedor e doces artesanais.">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/icone1.png">
+</head>
+<body>
+    <header aria-label="Cabeçalho do site">
+        <div class="container nav">
+            <a class="brand" href="1menu.html">
+                <div class="logo"><div class="logoimg"></div></div>
+                <div>
+                    <div style="font-weight:700;">Cafeteria Aurora</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Cafés especiais • Ambiente acolhedor</div>
+                </div>
+            </a>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="1menu.html">Menu</a></li>
+                    <li><a href="2sobre.html">Sobre</a></li>
+                    <li><a href="3contato.html">Contato</a></li>
+                    <li><a class="cta" href="4cardapio.html">Cardápio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <h1>Seu refúgio do café, no coração da cidade.</h1>
+                    <p class="lead">
+                        Pares acolhedores, grãos selecionados e receitas artesanais. Venha experimentar nosso espresso single-origin e doces feitos no dia.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="4cardapio.html" class="btn btn-primary">Ver Menu</a>
+                        <a href="3contato.html" class="btn btn-outline">Reservar mesa</a>
+                    </div>
+                </div>
+                <div style="max-width:420px;">
+                    <div class="card">
+                        <div style="display:flex;align-items:center;gap:1rem">
+                            <div style="width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:white;font-weight:700;font-family:'Playfair Display',serif">☕</div>
+                            <div>
+                                <div style="font-weight:700;color:var(--accent)">Prove hoje</div>
+                                <div style="color:var(--muted);font-size:.95rem">Espresso doppio + pão de queijo — promocional</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="sobre" class="sobre-nos">
+            <div class="container-hero1">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-serif text-cafe-medium mb-6 border-b-2 border-gold-accent pb-2">
+                        Nossa História
+                    </h2>
+                    <p class="text-lg mb-4 leading-relaxed">
+                        A Cafeteria Aurora nasceu de um sonho simples: criar um refúgio onde as pessoas pudessem desfrutar de um café de qualidade e de momentos de paz. Desde 2020, trabalhamos com grãos selecionados de pequenos produtores, garantindo um sabor único e um impacto social positivo.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Nosso ambiente é pensado para o seu conforto, com luz suave, música agradável e o aroma inconfundível do café fresco. Seja para uma pausa rápida ou um encontro longo, a Aurora é o seu lugar.
+                    </p>
+                </div>
+                <div class="dimage-container">
+                    <img src="images/interior.jpg" alt="Ambiente acolhedor da Cafeteria Aurora" class="img_dimage">
+                </div>
+            </div>
+        </section>
+        <section id="menu">
+            <h2 style="margin:0 0 .6rem">Menu</h2>
+            <div class="menu">
+                <div class="card menu-item">
+                    <div class="thumb" style="background-image:url('https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480_1_5x/img/recipe/ras/Assets/314D11A6-4457-4C70-A1BE-A6C25F597C18/Derivates/B362DC69-6AAA-43E1-AF51-184463E8551B.jpg')"></div>
+                    <div class="item-info">
+                        <h4>Latte</h4>
+                        <div class="small">Espuma aveludada com leite vaporizado</div>
+                        <div class="price">R$ 12,00</div>
+                    </div>
+                </div>
+                <div class="card menu-item">
+                    <a href="page/items_menu2.html" style="display:flex;gap:1rem;text-decoration:none;color:inherit">
+                    <div class="thumb" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrbZ30ACpLnGcvYX5uwXWPUR8sbf1paezFdA&s')"></div>
+                    <div class="item-info">
+                        <h4>Espresso Single</h4>
+                        <div class="small">Grãos torrados na casa — 30ml intenso</div>
+                        <div class="price">R$ 7,00</div>
+                    </div>
+                    </a>
+                </div>
+                <div class="card menu-item">
+                    <a href="page/items_menu3.html" style="display:flex;gap:1rem;text-decoration:none;color:inherit">
+                    <div class="thumb" style="background-image:url('https://www.tasteofhome.com/wp-content/uploads/2017/09/exps37407_THE1213734_37407_WEB.jpg')"></div>
+                    <div class="item-info">
+                        <h4>Cappuccino</h4>
+                        <div class="small">Espuma firme, cacau polvilhado</div>
+                        <div class="price">R$ 13,50</div>
+                    </div>
+                    </a>
+                </div>
+                <div class="card menu-item">
+                    <a href="" style="display:flex;gap:1rem;text-decoration:none;color:inherit">
+                    <div class="thumb" style="background-image:url('https://www.disktorta.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/B/o/Bolo-morango-com-chantilly-2.png')"></div>
+                    <div class="item-info">
+                        <h4>Bolo do Dia</h4>
+                        <div class="small">Porção caseira — pergunte a seleção</div>
+                        <div class="price">R$ 9,00</div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="foo1">
+        <div class="container">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+                <div style="display:flex;gap:.75rem;align-items:center">
+                    <div class="logo" style="width:40px;height:40px;font-size:18px">A</div>
+                    <div style="text-align:left">
+                        <div style="font-weight:700">Cafeteria Aurora</div>
+                        <div class="small">Rua das Flores, 123 • Centro</div>
+                    </div>
+                </div>
+                <div class="small">© <span id="year"></span> Cafeteria Aurora — Todos os direitos reservados</div>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

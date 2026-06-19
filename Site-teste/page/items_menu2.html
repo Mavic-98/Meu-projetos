@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Café Espresso — Apresentação do Item</title>
+    <meta name="description" content="Detalhes do Café Espresso." />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="styleto.css" />
+    <link rel="icon" type="image/png" href="../images/icone1.png" />
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <a class="brand" href="../1menu.html">
+                <div class="logo"><div class="logoimg"></div></div>
+                <div>
+                    <div style="font-weight:700;">Cafeteria Aurora</div>
+                    <div style="font-size:.8rem;color:var(--muted)">Cafés especiais • Ambiente acolhedor</div>
+                </div>
+            </a>
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="../1menu.html">Menu</a></li>
+                    <li><a href="../2sobre.html">Sobre</a></li>
+                    <li><a href="../3contato.html">Contato</a></li>
+                    <li><a class="cta" href="../4cardapio.html">Cardápio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="card" aria-labelledby="item-title" role="region">
+            <div class="photo" aria-hidden="false">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrbZ30ACpLnGcvYX5uwXWPUR8sbf1paezFdA&s" alt="Xícara de Café Espresso com espuma cremosa">
+            </div>
+            <div class="meta">
+                <div class="title">
+                    <h1 id="item-title">Café Espresso</h1>
+                    <div class="badge" aria-hidden="true">Bestseller</div>
+                </div>
+                <p class="desc">
+                    O sabor do espresso é concentrado e impactante. Ele não é uma bebida para matar a sede, mas para ser degustada.
+                </p>
+                <div class="tags" aria-hidden="true">
+                    <span class="tag">Quente</span>
+                    <span class="tag">Sem leite</span>
+                    <span class="tag">Sem lactose</span>
+                </div>
+                <div class="info" aria-hidden="true">
+                    <span>Preparação: 2–5 min</span>
+                    <span>•</span>
+                    <span>Calorias: ~5 kcal (Média)</span>
+                </div>
+                <div style="height:8px"></div>
+                <div class="price-row">
+                    <div style="display:flex; flex-direction:column;">
+                        <div class="price" id="price">R$ 7,00</div>
+                        <div class="info" style="margin-top:6px">
+                            <div class="allergens">.</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px">
+                        <div class="options" role="radiogroup" aria-label="Tamanhos">
+                            <div class="select-size" role="group" aria-label="Tamanhos">
+                                <button class="size-btn active" data-size="M" data-mult="1" aria-checked="true" role="radio">M</button>
+                                <button class="size-btn" data-size="P" data-mult="0.8572" aria-checked="false" role="radio">P</button>
+                                <button class="size-btn" data-size="G" data-mult="1.143" aria-checked="false" role="radio">G</button>
+                            </div>
+                            <div style="display:flex; gap:6px; align-items:center">
+                                <button id="minus" class="btn-card ghost" aria-label="Diminuir quantidade">-</button>
+                                <div id="qty" aria-live="polite" style="min-width:26px; text-align:center; color:#333;">1</div>
+                                <button id="plus" class="btn-card ghost" aria-label="Aumentar quantidade">+</button>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button class="btn-card primary" id="addBtn" aria-label="Adicionar ao pedido">Adicionar</button>
+                            <button class="btn-card ghost" id="favBtn" aria-pressed="false" aria-label="Adicionar aos favoritos">♡</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="foo1">
+        <div class="container">
+            <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;flex-direction: column;">
+                <div style="display:flex;gap:.75rem;align-items:center">
+                    <div class="logo" style="width:40px;height:40px;font-size:18px">A</div>
+                    <div style="text-align:left">
+                        <div style="font-weight:700">Cafeteria Aurora</div>
+                        <div class="small">Rua das Flores, 123 • Centro</div>
+                    </div>
+                </div>
+                <div class="small">© <span id="year"></span> Cafeteria Aurora — Todos os direitos reservados</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        (function(){
+            const base = 7.00;
+            const priceEl = document.getElementById('price');
+            const sizeBtns = Array.from(document.querySelectorAll('.size-btn'));
+            const minus = document.getElementById('minus');
+            const plus = document.getElementById('plus');
+            const qtyEl = document.getElementById('qty');
+            let qty = 1;
+            let multiplier = 1;
+
+            function formatBRL(v){ return 'R$ ' + v.toFixed(2).replace('.', ','); }
+
+            function updatePrice(){
+                const total = base * multiplier * qty;
+                priceEl.textContent = formatBRL(total);
+            }
+
+            sizeBtns.forEach(btn=>{
+                btn.addEventListener('click', ()=>{
+                    sizeBtns.forEach(b=>{
+                        b.classList.remove('active');
+                        b.setAttribute('aria-checked','false');
+                    });
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-checked','true');
+                    multiplier = parseFloat(btn.dataset.mult);
+                    updatePrice();
+                });
+            });
+
+            plus.addEventListener('click', ()=>{
+                qty = Math.min(12, qty + 1);
+                qtyEl.textContent = qty;
+                updatePrice();
+            });
+            minus.addEventListener('click', ()=>{
+                qty = Math.max(1, qty - 1);
+                qtyEl.textContent = qty;
+                updatePrice();
+            });
+
+            document.getElementById('addBtn').addEventListener('click', ()=>{
+                const size = document.querySelector('.size-btn.active').dataset.size;
+                alert(`Adicionado ao pedido: Café Espresso — Tamanho ${size} ×${qty}`);
+            });
+
+            document.getElementById('favBtn').addEventListener('click', function(){
+                const pressed = this.getAttribute('aria-pressed') === 'true';
+                this.setAttribute('aria-pressed', String(!pressed));
+                this.textContent = pressed ? '♡' : '♥';
+            });
+
+            updatePrice();
+        })();
+    </script>
+</body>
+</html>

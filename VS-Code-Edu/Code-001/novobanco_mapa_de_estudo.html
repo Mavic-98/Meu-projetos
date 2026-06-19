@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa de estudo — NovoBanco</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <style>
+    :root { --gold: #C8A055; --silver: #C0C0C0; --bronze: #CD7F32; --color-background-primary: #fff; --color-background-secondary: #f9f9f9; --color-background-card: #8bffeac0; --color-background-card-hover: #7bdfdac0; --color-border-primary: #ddd; --color-border-secondary: #eee; --color-border-tertiary: #7e7e7e; --color-text-primary: #333; --color-text-secondary: #666; --color-text-tertiary: #999; --color-text-shadow: #000000; --color-text-shadow-light: rgba(190, 190, 190, 0.5); --color-background-alert: #fff8e1; --color-text-alert: #ff8f00; --color-background-info: #e0f7fa; --color-text-info: #00796b; --color-background-success: #e8f5e9; --color-text-success: #388e3c; --color-background-warning: #fff3e0; --color-text-warning: #f57c00; --color-background-danger: #ffebee; --color-text-danger: #d32f2f; --border-radius-sm: 4px; --border-radius-md: 8px; --border-radius-lg: 12px; --font-mono: 'Courier New', Courier, monospace; } 
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--color-background-secondary); color: var(--color-text-primary); padding:20px; }
+    .tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:20px; }
+    .tab { padding:7px 14px; border-radius:20px; border:0.5px solid var(--color-border-secondary); background:var(--color-background-secondary); font-size:13px; cursor:pointer; color:var(--color-text-secondary); transition:all .15s; }
+    .tab.active { background:var(--color-background-primary); color:var(--color-text-primary); border-color:var(--color-border-primary); font-weight:500; }
+    .section { display:none; }
+    .section.active { display:block; }
+    .card { background: linear-gradient(to bottom, var(--color-background-card), var(--color-background-card-hover)); text-shadow: 2px 2px 4px var(--color-text-shadow-light); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); padding:14px 18px; margin-bottom:12px; }
+    .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:10px; margin-bottom:12px; }
+    .metric { background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:12px 14px; }
+    .metric .label { font-size:12px; color:var(--color-text-secondary); margin-bottom:4px; }
+    .metric .value { font-size:20px; font-weight:500; color:var(--color-text-primary); }
+    .tag { display:inline-block; padding:3px 10px; border-radius:20px; font-size:12px; margin:2px; }
+    .tag-blue { background:var(--color-background-info); color:var(--color-text-info); }
+    .tag-green { background:var(--color-background-success); color:var(--color-text-success); }
+    .tag-amber { background:var(--color-background-warning); color:var(--color-text-warning); }
+    .tag-red { background:var(--color-background-danger); color:var(--color-text-danger); }
+    .tag-gold { background:var(--gold); color:var(--color-text-primary); }
+    .tag-silver { background:var(--silver); color:var(--color-text-primary); }
+    .tag-bronze { background:var(--bronze); color:var(--color-text-primary); }
+    .row { display:flex; gap:10px; align-items:flex-start; margin-bottom:8px; }
+    .badge { min-width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:500; flex-shrink:0; }
+    .b-blue { background:var(--color-background-info); color:var(--color-text-info); }
+    .b-green { background:var(--color-background-success); color:var(--color-text-success); }
+    .b-amber { background:var(--color-background-warning); color:var(--color-text-warning); }
+    .b-purple { background:#EEEDFE; color:#3C3489; }
+    .flow { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin:10px 0; }
+    .flow-box { padding:6px 12px; border-radius:8px; font-size:13px; background:var(--color-background-secondary); border:0.5px solid var(--color-border-secondary); font-weight:500; }
+    .flow-arrow { color:var(--color-text-tertiary); font-size:16px; }
+    .screen-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; }
+    .screen-card { border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-md); padding:10px 12px; cursor:pointer; transition:all .15s; }
+    .screen-card:hover { border-color:var(--color-border-primary); background:var(--color-background-secondary); }
+    .screen-card.sel { border-color:var(--color-border-info); background:var(--color-background-info); }
+    .screen-card .sc-icon { font-size:20px; margin-bottom:4px; }
+    .screen-card .sc-name { font-size:13px; font-weight:500; margin-bottom:2px; }
+    .screen-card .sc-desc { font-size:11px; color:var(--color-text-secondary); }
+    .detail-box { margin-top:12px; padding:14px; border:0.5px solid var(--color-border-secondary); border-radius:var(--border-radius-md); background:var(--color-background-secondary); min-height:80px; }
+    .code { font-family:var(--font-mono); font-size:12px; background:var(--color-background-secondary); border:0.5px solid var(--color-border-tertiary); border-radius:6px; padding:12px 14px; margin:8px 0; overflow-x:auto; color:var(--color-text-secondary); }
+    .kw { color:var(--color-text-info); }
+    .str { color:var(--color-text-success); }
+    .fn { color:var(--color-text-warning); }
+    h3 { font-size:15px; font-weight:500; margin:0 0 12px; color:var(--color-text-primary); }
+    h4 { font-size:13px; font-weight:500; margin:10px 0 6px; color:var(--color-text-primary); }
+    p, li { font-size:13px; color:var(--color-text-secondary); line-height:1.6; margin:0 0 6px; }
+    ul { padding-left:18px; margin:4px 0; }
+    .divider { border:none; border-top:0.5px solid var(--color-border-tertiary); margin:12px 0; }
+    .state-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:0.5px solid var(--color-border-tertiary); }
+    .state-item:last-child { border-bottom:none; }
+    .state-name { font-size:13px; font-weight:500; }
+    .state-type { font-size:11px; color:var(--color-text-secondary); font-family:var(--font-mono); }
+    .state-init { font-size:12px; color:var(--color-text-secondary); font-family:var(--font-mono); max-width:180px; text-align:right; }
+    .step { display:flex; gap:12px; margin-bottom:14px; }
+    .step-num { min-width:28px; height:28px; border-radius:50%; background:var(--color-background-info); color:var(--color-text-info); font-size:13px; font-weight:500; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .step-content h4 { margin:2px 0 4px; }
+    .step-content p { margin:0; }
+    .tip { padding:10px 14px; border-left:2px solid var(--color-border-info); background:var(--color-background-info); border-radius:0 var(--border-radius-md) var(--border-radius-md) 0; margin:10px 0; }
+    .tip p { color:var(--color-text-info); margin:0; }
+    .key-row { display:flex; gap:8px; margin-bottom:6px; }
+    .kbd { font-family:var(--font-mono); font-size:12px; background:var(--color-background-secondary); border:0.5px solid var(--color-border-secondary); border-radius:4px; padding:3px 8px; }
+  </style>
+  <body>
+    <div style="padding:1rem 0">
+      <div style="margin-bottom:20px;">
+        <div style="font-size:22px; font-weight:500; margin-bottom:4px;">Mapa de estudo — NovoBanco</div>
+        <div style="font-size:14px; color:var(--color-text-secondary);">Aplicativo bancário · React 18 + Vite 5 + Capacitor 6 · APK Android</div>
+      </div>
+
+      <div class="card-grid" style="margin-bottom:20px;">
+        <div class="metric"><div class="label">Framework</div><div class="value" style="font-size:16px;">React 18</div></div>
+        <div class="metric"><div class="label">Build tool</div><div class="value" style="font-size:16px;">Vite 5</div></div>
+        <div class="metric"><div class="label">Mobile wrapper</div><div class="value" style="font-size:16px;">Capacitor 6</div></div>
+        <div class="metric"><div class="label">Login demo</div><div class="value" style="font-size:16px; font-family:var(--font-mono)">ana / 1234</div></div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('visao')">Visão geral</button>
+        <button class="tab" onclick="switchTab('telas')">Telas</button>
+        <button class="tab" onclick="switchTab('estado')">Estado e props</button>
+        <button class="tab" onclick="switchTab('stack')">Stack técnica</button>
+        <button class="tab" onclick="switchTab('build')">Build &amp; APK</button>
+        <button class="tab" onclick="switchTab('conceitos')">Conceitos-chave</button>
+      </div>
+
+      <!-- VISÃO GERAL -->
+      <div id="tab-visao" class="section active">
+        <div class="card">
+          <h3>Estrutura do projeto</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div>
+              <h4>src/ — código-fonte React</h4>
+              <div class="row"><span class="badge b-blue">JSX</span><div><span style="font-family:var(--font-mono);font-size:12px;">screens/</span><p style="margin:0">9 telas da aplicação</p></div></div>
+              <div class="row"><span class="badge b-green">JSX</span><div><span style="font-family:var(--font-mono);font-size:12px;">components/</span><p style="margin:0">Avatar · Navbar · Toast</p></div></div>
+              <div class="row"><span class="badge b-amber">JS</span><div><span style="font-family:var(--font-mono);font-size:12px;">hooks/</span><p style="margin:0">useToast — notificações</p></div></div>
+              <div class="row"><span class="badge b-amber">JS</span><div><span style="font-family:var(--font-mono);font-size:12px;">data/</span><p style="margin:0">mockData — dados fictícios</p></div></div>
+              <div class="row"><span class="badge b-purple">JS</span><div><span style="font-family:var(--font-mono);font-size:12px;">utils/ · styles/</span><p style="margin:0">formatters · theme</p></div></div>
+            </div>
+            <div>
+              <h4>Raiz do projeto</h4>
+              <div class="row"><span class="badge b-blue">TS</span><div><span style="font-family:var(--font-mono);font-size:12px;">capacitor.config.ts</span><p style="margin:0">Config do app nativo</p></div></div>
+              <div class="row"><span class="badge b-green">JSON</span><div><span style="font-family:var(--font-mono);font-size:12px;">package.json</span><p style="margin:0">Scripts e dependências</p></div></div>
+              <div class="row"><span class="badge b-amber">JS</span><div><span style="font-family:var(--font-mono);font-size:12px;">vite.config.js</span><p style="margin:0">Config do bundler</p></div></div>
+              <div class="row"><span class="badge b-purple">—</span><div><span style="font-family:var(--font-mono);font-size:12px;">android/</span><p style="margin:0">Projeto Android Studio</p></div></div>
+              <div class="row"><span class="badge b-purple">—</span><div><span style="font-family:var(--font-mono);font-size:12px;">dist/</span><p style="margin:0">Build gerado pelo Vite</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Hierarquia de componentes</h3>
+          <div style="font-size:12px; font-family:var(--font-mono); color:var(--color-text-secondary); line-height:2;">
+            <div><span style="color:var(--color-text-info)">App.jsx</span> <span class="tag tag-blue">estado global</span></div>
+            <div style="margin-left:20px;">├── <span style="color:var(--color-text-success)">Toast</span> — notificação global</div>
+            <div style="margin-left:20px;">├── <span style="color:var(--color-text-success)">Login</span> — tela de acesso</div>
+            <div style="margin-left:20px;">├── <span style="color:var(--color-text-success)">Inicio</span> — home (saldo + atalhos)</div>
+            <div style="margin-left:20px;">│&nbsp;&nbsp;&nbsp;└── <span style="color:var(--color-text-warning)">Avatar</span></div>
+            <div style="margin-left:20px;">├── <span style="color:var(--color-text-success)">Extrato</span> — lista de transações</div>
+            <div style="margin-left:20px;">├── <span style="color:var(--color-text-success)">Transferir</span> — fluxo Pix (2 passos)</div>
+            <div style="margin-left:20px;">│&nbsp;&nbsp;&nbsp;└── <span style="color:var(--color-text-warning)">Avatar</span></div>
+            <div style="margin-left:20px;">├── <span style="color:var(--color-text-success)">Receber</span> — chave Pix + QR code</div>
+            <div style="margin-left:20px;">├── <span style="color:var(--color-text-success)">Ajustes</span> — menu da conta</div>
+            <div style="margin-left:20px;">│&nbsp;&nbsp;&nbsp;├── <span style="color:var(--color-text-warning)">Cartoes</span> — gerenciar cartões</div>
+            <div style="margin-left:20px;">│&nbsp;&nbsp;&nbsp;├── <span style="color:var(--color-text-warning)">Seguranca</span> — biometria + senha</div>
+            <div style="margin-left:20px;">│&nbsp;&nbsp;&nbsp;└── <span style="color:var(--color-text-warning)">Suporte</span> — chatbot</div>
+            <div style="margin-left:20px;">└── <span style="color:var(--color-text-success)">Navbar</span> — barra de navegação</div>
+          </div>
+        </div>
+
+        <div class="tip"><p>O app <strong>não usa react-router</strong>. A navegação é feita com <code>useState</code> no App.jsx — o estado <code>activeTab</code> decide qual tela renderizar.</p></div>
+      </div>
+
+      <!-- TELAS -->
+      <div id="tab-telas" class="section">
+        <p style="margin-bottom:12px;">Clique em uma tela para ver seus detalhes:</p>
+        <div class="screen-grid" id="screen-grid">
+          <div class="screen-card" onclick="selectScreen('login')">
+            <div class="sc-icon">🔑</div><div class="sc-name">Login</div><div class="sc-desc">Autenticação</div>
+          </div>
+          <div class="screen-card" onclick="selectScreen('inicio')">
+            <div class="sc-icon">🏠</div><div class="sc-name">Inicio</div><div class="sc-desc">Home — saldo</div>
+          </div>
+          <div class="screen-card" onclick="selectScreen('extrato')">
+            <div class="sc-icon">📄</div><div class="sc-name">Extrato</div><div class="sc-desc">Transações</div>
+          </div>
+          <div class="screen-card" onclick="selectScreen('transferir')">
+            <div class="sc-icon">⬆</div><div class="sc-name">Transferir</div><div class="sc-desc">Pix — 2 passos</div>
+          </div>
+          <div class="screen-card" onclick="selectScreen('receber')">
+            <div class="sc-icon">⬇</div><div class="sc-name">Receber</div><div class="sc-desc">Chave Pix + QR</div>
+          </div>
+          <div class="screen-card" onclick="selectScreen('ajustes')">
+            <div class="sc-icon">⚙</div><div class="sc-name">Ajustes</div><div class="sc-desc">Perfil + sub-telas</div>
+          </div>
+        </div>
+        <div class="detail-box" id="screen-detail">
+          <p style="color:var(--color-text-tertiary); text-align:center; padding:10px 0;">Selecione uma tela acima</p>
+        </div>
+      </div>
+
+      <!-- ESTADO -->
+      <div id="tab-estado" class="section">
+        <div class="card">
+          <h3>Estado global — App.jsx</h3>
+          <p>Todos os dados compartilhados entre telas vivem aqui. Cada tela recebe exatamente o que precisa por <em>props</em>.</p>
+          <div class="state-item">
+            <div><div class="state-name">screen</div><div class="state-type">string</div></div>
+            <div class="state-init">"login" | "app"</div>
+          </div>
+          <div class="state-item">
+            <div><div class="state-name">activeTab</div><div class="state-type">string</div></div>
+            <div class="state-init">"inicio"</div>
+          </div>
+          <div class="state-item">
+            <div><div class="state-name">balance</div><div class="state-type">number</div></div>
+            <div class="state-init">8450.75</div>
+          </div>
+          <div class="state-item">
+            <div><div class="state-name">savings</div><div class="state-type">number</div></div>
+            <div class="state-init">3200.00</div>
+          </div>
+          <div class="state-item">
+            <div><div class="state-name">transactions</div><div class="state-type">Array</div></div>
+            <div class="state-init">8 itens (mock)</div>
+          </div>
+          <div class="state-item">
+            <div><div class="state-name">showBalance</div><div class="state-type">boolean</div></div>
+            <div class="state-init">true</div>
+          </div>
+          <div class="state-item">
+            <div><div class="state-name">toast</div><div class="state-type">object | null</div></div>
+            <div class="state-init">hook useToast</div>
+          </div>
+          <div class="state-item" style="border-bottom:none;">
+            <div><div class="state-name">subTelaAjustes</div><div class="state-type">string | null</div></div>
+            <div class="state-init">null</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Fluxo de uma transferência</h3>
+          <div class="flow">
+            <div class="flow-box">Usuário digita valor</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">validateTransfer()</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">onSuccess()</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">setBalance()</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">setTransactions()</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box">showToast()</div>
+          </div>
+          <p>A função <code>handleTransferSuccess</code> no App.jsx recebe o valor e o destinatário, atualiza o saldo, insere a transação no topo do extrato e dispara o toast de confirmação.</p>
+        </div>
+
+        <div class="card">
+          <h3>Hook useToast</h3>
+          <div class="code">
+            <span class="kw">export function</span> <span class="fn">useToast</span>() {<br>
+            &nbsp;&nbsp;<span class="kw">const</span> [toast, setToast] = <span class="fn">useState</span>(<span class="kw">null</span>);<br><br>
+            &nbsp;&nbsp;<span class="kw">const</span> showToast = <span class="fn">useCallback</span>((msg, type = <span class="str">"success"</span>, dur = 2800) => {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">setToast</span>({ msg, type });<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">setTimeout</span>(() => <span class="fn">setToast</span>(<span class="kw">null</span>), dur);<br>
+            &nbsp;&nbsp;}, []);<br><br>
+            &nbsp;&nbsp;<span class="kw">return</span> { toast, showToast };<br>
+            }
+          </div>
+          <p>Hook personalizado que encapsula a lógica de notificação temporária. <code>useCallback</code> evita recriação da função a cada renderização.</p>
+        </div>
+      </div>
+
+      <!-- STACK -->
+      <div id="tab-stack" class="section">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="card">
+            <h3>React 18</h3>
+            <p>Biblioteca para construir interfaces com componentes reutilizáveis. No projeto, o estado e os eventos são gerenciados com hooks.</p>
+            <h4>Hooks usados</h4>
+            <ul>
+              <li><code>useState</code> — estado local e global</li>
+              <li><code>useCallback</code> — memo de funções</li>
+              <li>Customizado: <code>useToast</code></li>
+            </ul>
+            <h4>Padrão</h4>
+            <p>Componentes funcionais com JSX. Props passadas de pai para filho. Callbacks para comunicar filho → pai.</p>
+          </div>
+          <div class="card">
+            <h3>Vite 5</h3>
+            <p>Ferramenta de build moderna e rápida. Substitui o Create React App no ecossistema atual.</p>
+            <h4>Comandos</h4>
+            <div class="code"><span class="fn">npm run dev</span>     → servidor local<br><span class="fn">npm run build</span>   → gera dist/<br><span class="fn">npm run preview</span> → testa o build</div>
+            <h4>Plugin usado</h4>
+            <p><code>@vitejs/plugin-react</code> — transforma JSX para JS e habilita o Fast Refresh (hot reload).</p>
+          </div>
+          <div class="card">
+            <h3>Capacitor 6</h3>
+            <p>Ponte entre o web app (React) e as APIs nativas do Android/iOS. A WebView carrega o <code>dist/</code> gerado pelo Vite.</p>
+            <h4>Plugins nativos</h4>
+            <ul>
+              <li><code>@capacitor/status-bar</code> — barra de status</li>
+              <li><code>@capacitor/keyboard</code> — teclado nativo</li>
+              <li><code>@capacitor/haptics</code> — vibração</li>
+              <li><code>@capacitor/app</code> — ciclo de vida</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>react-chatbotify</h3>
+            <p>Biblioteca de chatbot interativo usada na tela de Suporte. O fluxo de conversa é definido como um objeto JS com estados e transições.</p>
+            <h4>Fluxo</h4>
+            <p>Cada chave do objeto <code>flow</code> é um estado. O campo <code>path</code> decide para qual estado ir com base na resposta do usuário.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Utilitários do projeto</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div>
+              <h4>formatters.js</h4>
+              <ul>
+                <li><code>formatBRL(value)</code> → "R$ 1.234,56"</li>
+                <li><code>getInitials(name)</code> → "AS"</li>
+                <li><code>todayFormatted()</code> → "30/05/2025"</li>
+                <li><code>progressPercent(cur, goal)</code> → 0–100</li>
+                <li><code>validateTransfer(raw, bal)</code> → {ok, amount, error}</li>
+              </ul>
+            </div>
+            <div>
+              <h4>theme.js</h4>
+              <ul>
+                <li><code>colors</code> — tokens de cor (bg, gold, green…)</li>
+                <li><code>s.card</code> — estilo do card surface</li>
+                <li><code>s.input</code> — estilo de campos</li>
+                <li><code>s.btnPrimary</code> — botão dourado</li>
+                <li><code>s.btnGhost</code> — botão transparente</li>
+                <li><code>s.navItem(active)</code> — item do nav bar</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUILD -->
+      <div id="tab-build" class="section">
+        <div class="card">
+          <h3>Pipeline: código → APK</h3>
+          <div class="flow" style="flex-direction:column; align-items:flex-start;">
+            <div class="flow" style="width:100%;">
+              <div class="flow-box" style="background:var(--color-background-info);border-color:var(--color-border-info);color:var(--color-text-info);">React/JSX</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-box">npm run build</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-box" style="background:var(--color-background-success);border-color:var(--color-border-success);color:var(--color-text-success);">dist/</div>
+            </div>
+            <div class="flow" style="width:100%;">
+              <div class="flow-box" style="background:var(--color-background-success);border-color:var(--color-border-success);color:var(--color-text-success);">dist/</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-box">npx cap sync android</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-box" style="background:var(--color-background-warning);border-color:var(--color-border-warning);color:var(--color-text-warning);">android/assets/public/</div>
+            </div>
+            <div class="flow" style="width:100%;">
+              <div class="flow-box" style="background:var(--color-background-warning);border-color:var(--color-border-warning);color:var(--color-text-warning);">android/assets/</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-box">Android Studio → Build APK</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-box" style="background:var(--color-background-danger);border-color:var(--color-border-danger);color:var(--color-text-danger);">app-debug.apk</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Passo a passo detalhado</h3>
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Instalar dependências</h4>
+              <div class="code">cd banco-app && npm install</div>
+              <p>Instala React, Vite, Capacitor e todos os plugins de uma vez.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Desenvolver no navegador</h4>
+              <div class="code">npm run dev</div>
+              <p>Abre o app em <code>http://localhost:5173</code> com hot reload.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Gerar o build de produção</h4>
+              <div class="code">npm run build</div>
+              <p>Vite compila tudo e gera HTML+JS+CSS otimizados em <code>dist/</code>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Sincronizar com o Android</h4>
+              <div class="code">npx cap sync android</div>
+              <p>Copia o <code>dist/</code> para dentro do projeto Android e atualiza os plugins nativos.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Abrir no Android Studio e gerar APK</h4>
+              <div class="code">npx cap open android</div>
+              <p>No Android Studio: <strong>Build → Build Bundle(s)/APK(s) → Build APK(s)</strong>. O arquivo fica em <code>android/app/build/outputs/apk/debug/app-debug.apk</code>.</p>
+            </div>
+          </div>
+          <div class="tip"><p>Atalho: <code>npm run build:android</code> faz os passos 3 e 4 de uma vez.</p></div>
+        </div>
+
+        <div class="card">
+          <h3>Checklist antes da apresentação</h3>
+          <div id="checklist"></div>
+        </div>
+      </div>
+
+      <!-- CONCEITOS -->
+      <div id="tab-conceitos" class="section">
+        <div class="card">
+          <h3>Conceitos que podem ser perguntados</h3>
+          <div id="concept-list"></div>
+        </div>
+        <div class="card">
+          <h3>Credenciais de demonstração</h3>
+          <div class="key-row">
+            <span style="font-size:13px; color:var(--color-text-secondary); min-width:70px;">Usuário:</span>
+            <span class="kbd">ana</span>
+          </div>
+          <div class="key-row">
+            <span style="font-size:13px; color:var(--color-text-secondary); min-width:70px;">Senha:</span>
+            <span class="kbd">1234</span>
+          </div>
+          <hr class="divider">
+          <p>Estas credenciais estão em <code>src/data/mockData.js</code> no objeto <code>demoCredentials</code>. Em produção real, nunca se faz assim — seria autenticação via API.</p>
+        </div>
+        <div class="card">
+          <h3>ID do pacote Android</h3>
+          <div class="code">appId: <span class="str">"br.edu.novobanco.app"</span></div>
+          <p>O ID segue o padrão domínio invertido. Nesse caso, é um domínio educacional (<code>edu.br</code>) fictício. Definido em <code>capacitor.config.ts</code>.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const screens = {
+      login: {
+        icon:'🔑', name:'Login.jsx',
+        props: ['onSuccess: () => void'],
+        state: ['username', 'password', 'error'],
+        desc: 'Tela de autenticação. Valida as credenciais contra o objeto demoCredentials do mockData. Ao acertar, chama onSuccess() que muda screen para "app" no App.jsx.',
+        file: 'src/screens/Login.jsx'
+      },
+      inicio: {
+        icon:'🏠', name:'Inicio.jsx',
+        props: ['user', 'balance', 'savings', 'savingsGoal', 'transactions', 'showBalance', 'onToggleBalance', 'onTabChange'],
+        state: ['(sem estado local)'],
+        desc: 'Tela principal com saldo, atalhos rápidos e últimas transações. A barra de progresso da poupança é calculada por progressPercent(). Botão olho alterna showBalance.',
+        file: 'src/screens/Inicio.jsx'
+      },
+      extrato: {
+        icon:'📄', name:'Extrato.jsx',
+        props: ['transactions: Array'],
+        state: ['activeFilter'],
+        desc: 'Lista completa de transações com filtros por categoria (Todos, Pix, Compras, Saúde, Assinaturas). Ícones de categoria vêm de categoryIcons no mockData.',
+        file: 'src/screens/Extrato.jsx'
+      },
+      transferir: {
+        icon:'⬆', name:'Transferir.jsx',
+        props: ['balance', 'onSuccess', 'onError'],
+        state: ['step (1|2)', 'contact', 'pixKey', 'amount', 'description', 'done'],
+        desc: 'Fluxo em 2 passos: (1) escolher contato ou digitar chave Pix e valor; (2) tela de confirmação. Usa validateTransfer() para validar. Ao confirmar, chama onSuccess() que atualiza o estado global.',
+        file: 'src/screens/Transferir.jsx'
+      },
+      receber: {
+        icon:'⬇', name:'Receber.jsx',
+        props: ['onCopy: () => void'],
+        state: ['(sem estado local)'],
+        desc: 'Exibe a chave Pix (e-mail) e um QR code simulado com caracteres. Botão copiar chave chama onCopy() que dispara o toast no App.jsx. Também mostra os dados bancários completos.',
+        file: 'src/screens/Receber.jsx'
+      },
+      ajustes: {
+        icon:'⚙', name:'Ajustes.jsx',
+        props: ['user', 'onLogout', 'subTelaInicial'],
+        state: ['telaAtiva (seguranca | cartoes | suporte | null)'],
+        desc: 'Menu de conta com perfil e opções. Contém sub-telas internas: Seguranca (biometria, 2FA, alterar senha), Cartoes (toggle ativo/inativo, detalhe), Suporte (chatbot react-chatbotify).',
+        file: 'src/screens/Ajustes.jsx'
+      }
+    };
+
+    function selectScreen(id) {
+      document.querySelectorAll('.screen-card').forEach(c => c.classList.remove('sel'));
+      event.currentTarget.classList.add('sel');
+      const s = screens[id];
+      document.getElementById('screen-detail').innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div style="font-size:15px;font-weight:500;">${s.icon} ${s.name}</div>
+          <span class="tag tag-blue" style="font-family:var(--font-mono);font-size:11px;">${s.file}</span>
+        </div>
+        <p style="margin-bottom:10px;">${s.desc}</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div>
+            <div style="font-size:12px;color:var(--color-text-tertiary);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;">Props recebidas</div>
+            ${s.props.map(p=>`<div style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-secondary);padding:2px 0;">${p}</div>`).join('')}
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--color-text-tertiary);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;">Estado local</div>
+            ${s.state.map(st=>`<div style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-secondary);padding:2px 0;">${st}</div>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    const checkItems = [
+      { done: true, text: 'npm install rodado com sucesso' },
+      { done: true, text: 'npm run dev abre o app no navegador' },
+      { done: true, text: 'npm run build gera a pasta dist/ sem erros' },
+      { done: true, text: 'APK gerado em android/.../app-debug.apk' },
+      { done: true, text: 'App instalado e testado no celular' },
+      { done: false, text: 'Credenciais de demo anotadas: ana / 1234' },
+      { done: false, text: 'Roteiro de apresentação preparado' },
+    ];
+
+    document.getElementById('checklist').innerHTML = checkItems.map((item, i) => `
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);">
+        <input type="checkbox" id="ck${i}" ${item.done ? 'checked' : ''} style="width:16px;height:16px;cursor:pointer;accent-color:var(--color-text-info);">
+        <label for="ck${i}" style="font-size:13px;cursor:pointer;color:var(--color-text-secondary);">${item.text}</label>
+      </div>
+    `).join('');
+
+    const concepts = [
+      { q: 'O que é um componente React?', a: 'Uma função JavaScript que retorna JSX (HTML + JS misturados). Pode receber props e ter seu próprio estado.' },
+      { q: 'O que é useState?', a: 'Hook do React que cria uma variável de estado. Quando o estado muda, o componente re-renderiza automaticamente.' },
+      { q: 'O que são props?', a: 'Parâmetros que um componente pai passa para o filho. São somente-leitura no filho — para comunicar de volta, o pai passa uma função como prop (callback).' },
+      { q: 'O que é o Capacitor?', a: 'Framework que empacota um web app (React) dentro de uma WebView nativa. Permite acessar APIs do celular como câmera, vibração e status bar.' },
+      { q: 'Para que serve o Vite?', a: 'Ferramenta de build que compila JSX para JavaScript puro, agrupa todos os arquivos e otimiza o código para produção.' },
+      { q: 'O que é um hook personalizado?', a: 'Uma função que começa com "use" e combina hooks nativos do React. O useToast encapsula useState + setTimeout para gerenciar notificações.' },
+      { q: 'O que é o mockData?', a: 'Dados fictícios que simulam respostas de uma API bancária real. Inclui usuário, saldo, transações e contatos de demonstração.' },
+      { q: 'Como funciona a navegação?', a: 'Estado activeTab no App.jsx controla qual tela renderizar. Não há react-router — é roteamento manual por condicional JSX.' },
+    ];
+
+    let openConcept = -1;
+    document.getElementById('concept-list').innerHTML = concepts.map((c, i) => `
+      <div style="border-bottom:0.5px solid var(--color-border-tertiary);">
+        <div onclick="toggleConcept(${i})" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;cursor:pointer;">
+          <span style="font-size:13px;font-weight:500;">${c.q}</span>
+          <span id="icon${i}" style="color:var(--color-text-tertiary);font-size:16px;transition:transform .2s;">+</span>
+        </div>
+        <div id="ans${i}" style="display:none;padding:0 0 10px;font-size:13px;color:var(--color-text-secondary);line-height:1.6;">${c.a}</div>
+      </div>
+    `).join('');
+
+    function toggleConcept(i) {
+      const ans = document.getElementById('ans' + i);
+      const icon = document.getElementById('icon' + i);
+      if (openConcept === i) {
+        ans.style.display = 'none'; icon.textContent = '+'; icon.style.transform = ''; openConcept = -1;
+      } else {
+        if (openConcept >= 0) {
+          document.getElementById('ans' + openConcept).style.display = 'none';
+          document.getElementById('icon' + openConcept).textContent = '+';
+          document.getElementById('icon' + openConcept).style.transform = '';
+        }
+        ans.style.display = 'block'; icon.textContent = '−'; icon.style.transform = 'rotate(180deg)'; openConcept = i;
+      }
+    }
+
+    function switchTab(id) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.getElementById('tab-' + id).classList.add('active');
+    }
+  </script>
+</html>
